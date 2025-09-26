@@ -22,7 +22,7 @@ def RemoverRepetidos(Cubos):
                     if i not in Cubos[l] and l == j:
                         Veces+=1
     
-                    if i not in NumerosFaltantes and Veces==3:
+                    if Veces==3:
                             NumerosFaltantes.append(i)
                             print("nym",NumerosFaltantes)
                     else:
