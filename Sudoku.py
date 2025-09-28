@@ -1,7 +1,7 @@
 import random
 def CrearSudoku(Sudoku):   
-    CubosSudoku=[]
-    CubosSudoku=[[random.randint(1,9)for i in range(3)]for i in range(3)]
+    CubosSudoku = []
+    CubosSudoku = [[random.randint(1,9)for i in range(3)]for i in range(3)]
     RevisarRepetidos(CubosSudoku)
 
     return CubosSudoku
@@ -24,36 +24,35 @@ def CrearSudoku(Sudoku):
     """
 
 def RevisarRepetidos(Cubos):
-    Repetidos=[]
-    NumerosFaltantes=[]
+    Repetidos = []
+    NumerosFaltantes = []
     for i in range(1,10):
-        Contador=0
-        Veces=0
+        Contador = 0
+        Veces = 0
         for j in range(len(Cubos)):
             for l in range(len(Cubos[0])):
                 if i == Cubos[j][l]:
-                    Contador+=1
+                    Contador += 1
                 if i not in Cubos[j] and l == j:
-                    Veces+=1
-                    if i not in NumerosFaltantes and Veces==3:
+                    Veces += 1
+                    if i not in NumerosFaltantes and Veces == 3:
                         NumerosFaltantes.append(i)
             
-            if Contador>1:
+            if Contador > 1:
                 if i not in Repetidos:
                     Repetidos.append(i)
                     
-    if len(Repetidos)>0 or len(NumerosFaltantes)>0:
+    if len(Repetidos) > 0 or len(NumerosFaltantes) > 0:
         SacarRepetidos(Cubos,Repetidos,NumerosFaltantes)
     else:
         return(Cubos)
 
-
 def SacarRepetidos(Cubos,Repetidos,NumerosFaltantes):
     while True:
-        if len(NumerosFaltantes)==0:
+        if len(NumerosFaltantes) == 0:
             break
 
-        elif len(Repetidos)==0:
+        elif len(Repetidos) == 0:
             break
     
         else:
@@ -63,6 +62,7 @@ def SacarRepetidos(Cubos,Repetidos,NumerosFaltantes):
                 for i in range(len(Cubos)):
                     Cantidad = 0
                     Repetido = Repetidos[0]
+                    
                     for j in range(len(Cubos)):   
                         Cantidad += Cubos[j].count(Repetido)
                     try:
@@ -70,7 +70,7 @@ def SacarRepetidos(Cubos,Repetidos,NumerosFaltantes):
                     except ValueError:
                         continue
                     else:
-                        if Cantidad>1:
+                        if Cantidad > 1:
                             Cubos[i][ubicacion] = Numero
 
                 else:
