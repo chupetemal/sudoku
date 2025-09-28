@@ -3,7 +3,6 @@ def CrearSudoku(Sudoku):
     CubosSudoku=[]
     CubosSudoku=[[random.randint(1,9)for i in range(3)]for i in range(3)]
     CubosSudoku=RevisarRepetidos(CubosSudoku)
-
     print("esto es lo q se devolvio",CubosSudoku)
     return CubosSudoku
     """
@@ -32,48 +31,51 @@ def RevisarRepetidos(Cubos):
     print("entro la bala")
     Repetidos=[]
     NumerosFaltantes=[]
-    print(Cubos)
     print(Cubos[0])
+    print(Cubos)
     for i in range(1,10):
         Contador=0
         Veces=0
         for j in range(len(Cubos)):
             for l in range(len(Cubos[0])):
-                print(i)
                 if i == Cubos[j][l]:
                     Contador+=1
-                    
-                    if i not in Cubos[l] and l == j:
-                        Veces+=1
-                        if Veces==3:
-                            NumerosFaltantes.append(i)
+                if i not in Cubos[j] and l == j:
+                    Veces+=1
+                    if i not in NumerosFaltantes and Veces==3:
+                        NumerosFaltantes.append(i)
+                        print("nue",NumerosFaltantes)
                             
-                    
-                        
-                    
+        
             if Contador>1:
-                print("el numero",i,"esta en la lista",Contador,"veces")
-                Repetidos.append(i)
-                print("re",Repetidos)
-    
+                if i not in Repetidos:
+                    Repetidos.append(i)
+                    print("re",Repetidos)
+
+
+
+ 
     print("nym",NumerosFaltantes)
     if len(Repetidos)>0 or len(NumerosFaltantes)>0:
         SacarRepetidos(Cubos,Repetidos,NumerosFaltantes)
     else:
         print("esta lista esta completa")
         print(Cubos)
-        return (Cubos)
+        return
 
 
 def SacarRepetidos(Cubos,Repetidos,NumerosFaltantes):
     while True:
         print(Repetidos)
+        print(Cubos)
         if NumerosFaltantes==0:
             break
         else:
-            NumerosFaltantes.remove()
-            print(NumerosFaltantes)
+            Numero=NumerosFaltantes
+            NumerosFaltantes.pop()
+            print()
+            print()
 
-    
     RevisarRepetidos(Cubos)
 
+"""
