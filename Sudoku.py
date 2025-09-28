@@ -2,7 +2,7 @@ import random
 def CrearSudoku(Sudoku):   
     CubosSudoku=[]
     CubosSudoku=[[random.randint(1,9)for i in range(3)]for i in range(3)]
-    CubosSudoku=RevisarRepetidos(CubosSudoku)
+    RevisarRepetidos(CubosSudoku)
     print("esto es lo q se devolvio",CubosSudoku)
     return CubosSudoku
     """
@@ -23,16 +23,9 @@ def CrearSudoku(Sudoku):
         print(CubosSudoku)
     """
 
-
-
-
-
 def RevisarRepetidos(Cubos):
-    print("entro la bala")
     Repetidos=[]
     NumerosFaltantes=[]
-    print(Cubos[0])
-    print(Cubos)
     for i in range(1,10):
         Contador=0
         Veces=0
@@ -44,38 +37,58 @@ def RevisarRepetidos(Cubos):
                     Veces+=1
                     if i not in NumerosFaltantes and Veces==3:
                         NumerosFaltantes.append(i)
-                        print("nue",NumerosFaltantes)
-                            
-        
+            
             if Contador>1:
                 if i not in Repetidos:
                     Repetidos.append(i)
-                    print("re",Repetidos)
-
-
-
- 
-    print("nym",NumerosFaltantes)
+                    
     if len(Repetidos)>0 or len(NumerosFaltantes)>0:
         SacarRepetidos(Cubos,Repetidos,NumerosFaltantes)
     else:
         print("esta lista esta completa")
         print(Cubos)
-        return
+        return(Cubos)
 
 
 def SacarRepetidos(Cubos,Repetidos,NumerosFaltantes):
+    print("numeros",NumerosFaltantes)
+    print("Repetidos",Repetidos)
+    print(Cubos[0])
+    print(Cubos)
     while True:
-        print(Repetidos)
-        print(Cubos)
-        if NumerosFaltantes==0:
+        if len(NumerosFaltantes)==0:
+            print("se rompio")
             break
+
+        elif len(Repetidos)==0:
+            break
+    
         else:
-            Numero=NumerosFaltantes
-            NumerosFaltantes.pop()
-            print()
-            print()
+            print("numeros",NumerosFaltantes)
+            Numero=NumerosFaltantes[0]
+            NumerosFaltantes.remove(Numero)
+            while True:
+                for i in range(len(Cubos)):
+                    Cantidad = 0
+                    Repetido = Repetidos[0]
+                    for j in range(3):   
+                        Cantidad += Cubos[j].count(Repetido)
+                    try:
+                        ubicacion = Cubos[i].index(Repetido)
+                    except ValueError:
+                        continue
+                    else:
+                        print("cantida",Cantidad,"ubicacion",ubicacion,"repetido",Repetido,"numero",Numero)
+                        print(i)
 
-    RevisarRepetidos(Cubos)
+                    if Cantidad>1:
+                        print("tendria que cambiar algo")
+                        Cubos[i][ubicacion] = Numero
+                        print(Cubos)
+                else:
+                    print("se Removio el numero",Repetido)
+                    Repetidos.remove(Repetido)
+                    break
+    RevisarRepetidos(Cubos)           
+            
 
-"""
