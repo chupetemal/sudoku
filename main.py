@@ -1,9 +1,9 @@
 from Sudoku import CrearSudoku
 def main():
     Sudoku=[]
-    while len(Sudoku)!=1:
+    while len(Sudoku)!=3:
         Sudoku.append(CrearSudoku(Sudoku))
-        print(Sudoku)
+    print(Sudoku)
 
 
 if __name__ == "__main__":

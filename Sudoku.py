@@ -3,7 +3,7 @@ def CrearSudoku(Sudoku):
     CubosSudoku=[]
     CubosSudoku=[[random.randint(1,9)for i in range(3)]for i in range(3)]
     RevisarRepetidos(CubosSudoku)
-    print("esto es lo q se devolvio",CubosSudoku)
+
     return CubosSudoku
     """
     #forma pussy(inteligente de hacer lo de abajo)
@@ -45,48 +45,35 @@ def RevisarRepetidos(Cubos):
     if len(Repetidos)>0 or len(NumerosFaltantes)>0:
         SacarRepetidos(Cubos,Repetidos,NumerosFaltantes)
     else:
-        print("esta lista esta completa")
-        print(Cubos)
         return(Cubos)
 
 
 def SacarRepetidos(Cubos,Repetidos,NumerosFaltantes):
-    print("numeros",NumerosFaltantes)
-    print("Repetidos",Repetidos)
-    print(Cubos[0])
-    print(Cubos)
     while True:
         if len(NumerosFaltantes)==0:
-            print("se rompio")
             break
 
         elif len(Repetidos)==0:
             break
     
         else:
-            print("numeros",NumerosFaltantes)
             Numero=NumerosFaltantes[0]
             NumerosFaltantes.remove(Numero)
             while True:
                 for i in range(len(Cubos)):
                     Cantidad = 0
                     Repetido = Repetidos[0]
-                    for j in range(3):   
+                    for j in range(len(Cubos)):   
                         Cantidad += Cubos[j].count(Repetido)
                     try:
                         ubicacion = Cubos[i].index(Repetido)
                     except ValueError:
                         continue
                     else:
-                        print("cantida",Cantidad,"ubicacion",ubicacion,"repetido",Repetido,"numero",Numero)
-                        print(i)
+                        if Cantidad>1:
+                            Cubos[i][ubicacion] = Numero
 
-                    if Cantidad>1:
-                        print("tendria que cambiar algo")
-                        Cubos[i][ubicacion] = Numero
-                        print(Cubos)
                 else:
-                    print("se Removio el numero",Repetido)
                     Repetidos.remove(Repetido)
                     break
     RevisarRepetidos(Cubos)           
