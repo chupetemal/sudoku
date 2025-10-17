@@ -78,4 +78,32 @@ def SacarRepetidos(Cubos,Repetidos,NumerosFaltantes):
                     break
     RevisarRepetidos(Cubos)           
             
+def MostrarSudoku(Sudoku):
+    print(Sudoku)
+    for i in range(len(Sudoku)):
+        for j in range(len(Sudoku)):
+            print()
+            try:
+                print(Sudoku[i][0],end=" ")
+                print(Sudoku[i+1][1],end=" ")
+                print(Sudoku[i+2][2],end=" ")
+            except IndexError:
+                continue
 
+
+
+def JugarAlJogo(Sudoku):
+    SudokuAux=Sudoku
+    while True:
+        print("ingrese 1 si quiere hacer un sudoku")
+        print("ingrese -1 si quiere salir")
+        seleccion=int(input("ingrese la fila del sudoku que quiere elegir del (1 al 9)"))
+        if seleccion==-1:
+            break
+        else:
+            
+            print("")
+            fila=int(input("ingrese la fila del sudoku que quiere elegir del (1 al 9)")) 
+
+            seleccion=int(input("ingrese la fila del sudoku que quiere elegir del (1 al 9)"))
+    return "para pamflin es no esta hecho"

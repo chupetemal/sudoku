@@ -1,4 +1,4 @@
-from Sudoku import CrearSudoku
+from Sudoku import CrearSudoku, MostrarSudoku,JugarAlJogo
 def main():
     print("1.hacer un sudoku")
     print("2.resolver un sudoku")    
@@ -8,11 +8,15 @@ def main():
     
     if Seleccion == 1:
         Sudoku=[]
-        while len(Sudoku)!=3:
+        while len(Sudoku)!=9:
             Sudoku.append(CrearSudoku(Sudoku))
-        print(Sudoku)
+        MostrarSudoku(Sudoku)
+
     else:
-        print("proximamente")
+        Sudoku=[]
+        while len(Sudoku)!=9:
+            Sudoku.append(CrearSudoku(Sudoku))
+        
         
 
 
